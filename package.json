@@ -1,0 +1,47 @@
+{
+  "name": "grunt-svgicons2svgfont",
+  "description": "Create a SVG font from multiple SVG glyph files",
+  "version": "0.1.0",
+  "homepage": "https://github.com/nfroidure/grunt-svgicons2svgfont",
+  "author": {
+    "name": "Nicolas Froidure",
+    "url": "http://www.insertafter.com/blog.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nfroidure/grunt-svgicons2svgfont.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nfroidure/grunt-svgicons2svgfont/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nfroidure/grunt-svgicons2svgfont/blob/master/LICENSE"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "svgicons2svgfont": "latest"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-bump": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-nodeunit": "latest",
+    "matchdep": "latest"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin", "font", "svg", "icons", "converter", "cli"
+  ]
+}
