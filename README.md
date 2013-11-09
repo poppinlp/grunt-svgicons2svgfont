@@ -79,10 +79,16 @@ grunt.initConfig({
 })
 ```
 
+### Related Grunt plugins
+You may use this plugin in addition of the following plugins :
+* [grunt-svg2ttf](https://npmjs.org/package/grunt-svg2ttf)
+* [grunt-ttf2eot](https://npmjs.org/package/grunt-ttf2eot)
+* [grunt-ttf2woff](https://npmjs.org/package/grunt-ttf2woff)
+
 ### Contributing / Issues
 
 Please submit SVG related issue to the
- [svgicons2svgfont](https://github.com/nfroidure/svgicons2svgfont)
+ [svgicons2svgfont project](https://github.com/nfroidure/svgicons2svgfont)
  on wich grunt-svgicons2svgfont depends.
 
 This repository issues is only for grunt and grunt tasks related issues.
