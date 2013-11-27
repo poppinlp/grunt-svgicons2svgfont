@@ -29,12 +29,12 @@ module.exports = function(grunt) {
     var done = this.async();
     this.files.forEach(function (files) {
       var fontDestination = Path.join(files.dest, options.font);
-      svgicons2svgfont(files.src, fontDestination + '.svg', {
+      svgicons2svgfont(files.src, {
         fontName: options.font,
+        appendCodepoints: options.appendCodepoints,
         log: grunt.log.ok,
-        error: grunt.log.fail,
-        callback: done
-      });
+        error: grunt.log.fail
+      }).pipe(Fs.createWriteStream(fontDestination + '.svg')).on('finish',done);
     });
   });
 
