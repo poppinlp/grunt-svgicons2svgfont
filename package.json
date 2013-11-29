@@ -1,7 +1,7 @@
 {
   "name": "grunt-svgicons2svgfont",
   "description": "Create a SVG font from multiple SVG glyph files",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/nfroidure/grunt-svgicons2svgfont",
   "author": {
     "name": "Nicolas Froidure",
@@ -28,7 +28,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "svgicons2svgfont": "0.0.2"
+    "svgicons2svgfont": "0.0.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
