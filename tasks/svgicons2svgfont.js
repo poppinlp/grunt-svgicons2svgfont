@@ -49,7 +49,7 @@ module.exports = function(grunt) {
             stream: Fs.createReadStream(file)
           };
         if(matches&&matches[1]) {
-          glyph.codepoint = parseInt(matches[1]);
+          glyph.codepoint = parseInt(matches[1], 16);
           usedCodePoints.push(glyph.codepoint);
           return glyph;
         }
