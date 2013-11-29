@@ -69,7 +69,7 @@ Allow to append codepoints to icon files in order to always keep the same codepo
 
 ```js
 grunt.initConfig({
-  fontfactory: {
+  svgicons2svgfont: {
     options: {
       font: "my-font-name"
     },
