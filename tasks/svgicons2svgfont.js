@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     var done = this.async();
     this.files.forEach(function (files) {
       var usedCodePoints = []
-      , curCodepoint = 0xE001
+      , curCodepoint = UNICODE_PRIVATE_USE_AREA.start
       , fontDestination = Path.join(files.dest, options.font);
       
       svgicons2svgfont(files.src.map(function(file) {
