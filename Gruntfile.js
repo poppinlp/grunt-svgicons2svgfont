@@ -1,11 +1,12 @@
-require('fs').mkdirSync(__dirname+"/test/results/");
-
 module.exports = function(grunt) {
+  var testResultDir = __dirname + '/test/results/';
+
+  grunt.file.mkdir(testResultDir);
 
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
-    temp: __dirname+"/test/results/",
+    testResult: testResultDir,
 
     bump: {
       options: {
@@ -23,7 +24,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      tests: ["<%= temp %>*"],
+      tests: ["<%= testResult %>*"]
     },
 
     svgicons2svgfont: {
@@ -34,7 +35,7 @@ module.exports = function(grunt) {
           appendCodepoints: true
         },
         src: "test/fixtures/prefixedicons/*.svg",
-        dest: "<%= temp %>"
+        dest: "<%= testResult %>"
       },
       testoriginalicons: {
         options: {
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
           onlyFonts: true
         },
         src: "test/fixtures/originalicons/*.svg",
-        dest: "<%= temp %>"
+        dest: "<%= testResult %>"
       },
       testcleanicons: {
         options: {
@@ -50,12 +51,12 @@ module.exports = function(grunt) {
           onlyFonts: false
         },
         src: "test/fixtures/cleanicons/*.svg",
-        dest: "<%= temp %>"
+        dest: "<%= testResult %>"
       }
     },
 
     nodeunit: {
-      tests: ["test/*.nodeunit.js"],
+      tests: ["test/*.nodeunit.js"]
     }
   });
 
