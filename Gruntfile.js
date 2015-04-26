@@ -6,7 +6,9 @@ module.exports = function(grunt) {
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
-    testResult: testResultDir,
+    clean: {
+      tests: [testResultDir + '*.svg']
+    },
 
     bump: {
       options: {
@@ -23,35 +25,28 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: {
-      tests: ["<%= testResult %>*"]
-    },
-
     svgicons2svgfont: {
       testprefixedicons: {
         options: {
-          font: "test-prefixedicons-font",
-          onlyFonts: true,
+          fontName: "test-prefixedicons-font",
           appendCodepoints: true
         },
         src: "test/fixtures/prefixedicons/*.svg",
-        dest: "<%= testResult %>"
+        dest: testResultDir
       },
       testoriginalicons: {
         options: {
-          font: "my-test-font",
-          onlyFonts: true
+          fontName: "my-test-font"
         },
         src: "test/fixtures/originalicons/*.svg",
-        dest: "<%= testResult %>"
+        dest: testResultDir
       },
       testcleanicons: {
         options: {
-          font: "test-cleanicons-font",
-          onlyFonts: false
+          fontName: "test-cleanicons-font"
         },
         src: "test/fixtures/cleanicons/*.svg",
-        dest: "<%= testResult %>"
+        dest: testResultDir
       }
     },
 

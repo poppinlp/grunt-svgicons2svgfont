@@ -1,4 +1,7 @@
-# grunt-svgicons2svgfont [![Build Status](https://secure.travis-ci.org/nfroidure/grunt-svgicons2svgfont.png)](http://travis-ci.org/nfroidure/grunt-svgicons2svgfont)
+# grunt-svgicons2svgfont
+[![Build Status](https://travis-ci.org/poppinlp/grunt-svgicons2svgfont.png?branch=master)](https://travis-ci.org/poppinlp/grunt-svgicons2svgfont)
+[![Dependency Status](https://david-dm.org/poppinlp/grunt-svgicons2svgfont.svg)](https://david-dm.org/poppinlp/grunt-svgicons2svgfont)
+[![devDependency Status](https://david-dm.org/poppinlp/grunt-svgicons2svgfont/dev-status.svg)](https://david-dm.org/poppinlp/grunt-svgicons2svgfont#info=devDependencies)
 
 Create a SVG font from multiple SVG glyph files.
 
@@ -53,7 +56,7 @@ Type: `string`
 
 Directory of the resulting font.
 
-#### options.font
+#### options.fontName
 Type: `String`
 Default value: `'iconfont'`
 
@@ -65,13 +68,63 @@ Default value: `false`
 
 Allow to append codepoints to icon files in order to always keep the same codepoints.
 
+#### options.fixedWidth
+Type: `Boolean`
+Default value: `false`
+
+Creates a monospace font of the width of the largest input icon.
+
+#### options.centerHorizontally
+Type: `Boolean`
+Default value: `false`
+
+Calculate the bounds of a glyph and center it horizontally.
+
+**Warning:** The bounds calculation is currently a naive implementation that may not work for some icons. We need to create a svg-pathdata-draw module on top of svg-pathdata to get the real bounds of the icon. It's in on the bottom of my to do, but feel free to work on it. Discuss it in the
+
+[related issue](https://github.com/nfroidure/svgicons2svgfont/issues/18).
+
+#### options.normalize
+Type: `Boolean`
+Default value: `false`
+
+Normalize icons by scaling them to the height of the highest icon.
+
+#### options.fontHeight
+Type: `Number`
+Default value: `MAX(icons.height)`
+The outputted font height  (defaults to the height of the highest input icon).
+
+#### options.round
+Type: `Number`
+Default value: `10e12`
+Setup SVG path rounding.
+
+#### options.descent
+Type: `Number`
+Default value: `0`
+
+The font descent. It is usefull to fix the font baseline yourself.
+
+#### options.log
+Type: `Function`
+Default value: `false`
+
+Allows you to provide your own logging function. Set to `function(){}` to impeach logging.
+
+#### options.error
+Type: `Function`
+Default value: `false`
+
+Allows you to provide your own error function. Set to `function(){}` to impeach error.
+
 ### Example
 
 ```js
 grunt.initConfig({
   svgicons2svgfont: {
     options: {
-      font: "my-font-name"
+      fontName: "my-font-name"
     },
     your_target: {
         src: 'glyphs/*.svg',
