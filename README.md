@@ -135,10 +135,13 @@ grunt.initConfig({
 ```
 
 ### Related Grunt plugins
-You may use this plugin in addition of the following plugins :
-* [grunt-svg2ttf](https://npmjs.org/package/grunt-svg2ttf)
-* [grunt-ttf2eot](https://npmjs.org/package/grunt-ttf2eot)
-* [grunt-ttf2woff](https://npmjs.org/package/grunt-ttf2woff)
+
+You may use this plugin in addition of the following plugins:
+
+* [grunt-svg2ttf](https://www.npmjs.com/package/grunt-svg2ttf)
+* [grunt-ttf2eot](https://www.npmjs.com/package/grunt-ttf2eot)
+* [grunt-ttf2woff](https://www.npmjs.com/package/grunt-ttf2woff)
+* [grunt-iconfont](https://www.npmjs.com/package/grunt-iconfont)
 
 ### Contributing / Issues
 
