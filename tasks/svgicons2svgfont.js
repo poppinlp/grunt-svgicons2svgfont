@@ -9,8 +9,8 @@
 "use strict";
 
 module.exports = function(grunt) {
-    var Path = require("path"),
-        Fs = require("fs"),
+    var path = require("path"),
+        fs = require("fs"),
         Package = require("../package.json"),
         svgicons2svgfont = require("svgicons2svgfont");
 
@@ -30,21 +30,22 @@ module.exports = function(grunt) {
                 log: grunt.log.ok,
                 error: grunt.log.fail
             }),
+            fontStream = svgicons2svgfont(options),
             done = this.async();
 
         this.files.forEach(function (files) {
             var usedCodePoints = [],
                 curCodepoint = UNICODE_PRIVATE_USE_AREA.start,
-                fontDestination = Path.join(files.dest, options.fontName);
+                fontDestination = path.join(files.dest, options.fontName);
 
             files = files.src.map(function (file) {
                 // Creating an object for each icon
-                var matches = Path.basename(file).match(/^(?:u([0-9a-f]{4})\-)?(.*).svg$/i),
+                var matches = path.basename(file).match(/^(?:u([0-9a-f]{4})\-)?(.*).svg$/i),
                     glyph = {
                         name: matches[2],
                         codepoint: 0,
                         file: file,
-                        stream: Fs.createReadStream(file)
+                        stream: fs.createReadStream(file)
                     };
                 if (matches && matches[1]) {
                     glyph.codepoint = parseInt(matches[1], 16);
@@ -62,7 +63,7 @@ module.exports = function(grunt) {
                     usedCodePoints.push(glyph.codepoint);
                     if(options.appendCodepoints) {
                         glyph.stream.on('finish', function() {
-                            Fs.rename(glyph.file, Path.dirname(glyph.file) + '/' + 'u' + i.toString(16).toUpperCase() + '-' + glyph.name + '.svg',
+                            fs.rename(glyph.file, path.dirname(glyph.file) + '/' + 'u' + i.toString(16).toUpperCase() + '-' + glyph.name + '.svg',
                                 function(err) {
                                     if(err) {
                                         error("Could not save codepoint: " + 'u' + i.toString(16).toUpperCase() +' for ' + glyph.name + '.svg');
@@ -77,7 +78,23 @@ module.exports = function(grunt) {
                 return glyph;
             });
 
-            svgicons2svgfont(files, options).pipe(Fs.createWriteStream(fontDestination + '.svg')).on('finish',done);
+            //svgicons2svgfont(files, options).pipe(fs.createWriteStream(fontDestination + '.svg')).on('finish',done);
+
+            fontStream.pipe(fs.createWriteStream(fontDestination + '.svg'))
+            .on('finish', done)
+            .on('error', function(err) {
+                console.log(err);
+            });
+
+            files.forEach(function (file) {
+                var glyph = fs.createReadStream(file.file);
+                glyph.metadata = {
+                    name: file.name,
+                    unicode: [file.codepoint.toString(16)]
+                };
+                fontStream.write(glyph);
+            });
+            fontStream.end();
         });
     });
 };

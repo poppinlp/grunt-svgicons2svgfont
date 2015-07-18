@@ -106,6 +106,12 @@ Default value: `0`
 
 The font descent. It is usefull to fix the font baseline yourself.
 
+#### options.metadata
+Type: `String`
+Default value: `undefined`
+
+The font [metadata](http://www.w3.org/TR/SVG/metadata.html). You can set any character data in but it is the be suited place for a copyright mention.
+
 #### options.log
 Type: `Function`
 Default value: `false`
@@ -124,7 +130,11 @@ Allows you to provide your own error function. Set to `function(){}` to impeach 
 grunt.initConfig({
   svgicons2svgfont: {
     options: {
-      fontName: "my-font-name"
+        fontName: "my-font-name",
+        metadata: {
+            unicode: ['\uE001\uE002'],
+            name: 'icon1'
+        }
     },
     your_target: {
         src: 'glyphs/*.svg',
